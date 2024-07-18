@@ -1,0 +1,5 @@
+npx prisma migrate dev
+npx prisma studio
+
+npm start dev 
+nest g controller user --no-spec

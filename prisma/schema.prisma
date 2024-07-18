@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  account_id  Int      @id @default(autoincrement())
+  name        String
+  username    String   @unique
+  password    String
+  email       String
+  gender      String
+  date        Int
+  month       Int
+  year        Int
+  role        Int
+  otp         String?
+
+  @@map("Accounts")
+  GroupRegistration GroupRegistration[]
+  CourseRegistration CourseRegistration[]
+  Group Group[]
+}
+
+model Course {
+  id          String   @unique @id @map("course_id")
+  name        String   @map("course_name")
+  num_credit  Int
+  term        Int
+  notcal      Int?
+
+  @@map("Courses")
+  Group Group[]
+  CourseRegistration CourseRegistration[]
+}
+
+
+model Notification {
+  id         Int      @id @default(autoincrement())
+  title      String   
+  message    String
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("Notifications")
+}
+
+
+model Term {
+  id       Int      @id @default(autoincrement())
+  name     String   
+  startDay DateTime @map("start_day")
+  endDay   DateTime @map("end_day")
+
+  Groups              Group[]
+  CourseRegistrations CourseRegistration[]
+
+  @@map("Term")
+}
+
+model Group {
+  groupId       Int    @id @default(autoincrement()) @map("group_id")
+  groupName     String @map("group_name")
+  courseId      String @map("course_id")
+  dayOfWeek     Int    @map("day_of_week")
+  period        Int
+  teacherId     Int    @map("teacher_id")
+  room          String 
+  maxStudents   Int    @map("max_students")
+  availableSlots Int   @map("available_slots")
+  termId          Int  @map("term")
+
+  course   Course  @relation(fields: [courseId], references: [id])
+  teacher  Account @relation(fields: [teacherId], references: [account_id])
+  term  Term    @relation(fields: [termId], references: [id])
+
+  GroupRegistrations GroupRegistration[]
+
+  @@map("Groups")
+}
+
+model CourseRegistration {
+  id               Int      @id @default(autoincrement())
+  accountId        Int      @map("account_id")
+  courseId         String   @map("course_id")
+  termId             Int      @map("term")
+  registrationDate DateTime @default(now()) @map("registration_date")
+
+  account Account @relation(fields: [accountId], references: [account_id])
+  course  Course  @relation(fields: [courseId], references: [id])
+  term Term    @relation(fields: [termId], references: [id])
+
+  @@map("CourseRegistrations")
+}
+
+model GroupRegistration {
+  id        Int      @id @default(autoincrement())
+  accountId Int      @map("account_id")
+  groupId   Int      @map("group_id")
+  time      DateTime @default(now())
+  grade     Float    @default(0)
+
+  account Account @relation(fields: [accountId], references: [account_id])
+  group   Group   @relation(fields: [groupId], references: [groupId])
+
+  @@map("GroupRegistrations")
+}
+
