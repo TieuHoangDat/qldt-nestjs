@@ -73,10 +73,15 @@ export class CourseService {
         if(!course) {
             throw new ForbiddenException('Không tìm thấy course')
         }
-        return this.prismaService.course.delete({
+        const data = await this.prismaService.course.delete({
             where: {
                 id: courseId
             },
         })
+        return {
+            status: "ok",
+            message: "Delete course successfully",
+            data: data
+        };
     }
 }
