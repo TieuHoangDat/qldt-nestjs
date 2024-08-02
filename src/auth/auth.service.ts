@@ -80,7 +80,7 @@ export class AuthService{
         return await this.signJwtToken(user)
     }
 
-    async signJwtToken(user: any): Promise<{status: string, message: string, access_token: string, refresh_token: string}> {
+    async signJwtToken(user: any): Promise<{status: string, message: string, data: string}> {
         const payload = {
             account_id: user.account_id,
             name: user.name,
@@ -94,21 +94,15 @@ export class AuthService{
             otp: user.otp
         };
 
-        const access_token = await this.jwtService.signAsync(payload, {
-            expiresIn: '1m',
+        const jwtString = await this.jwtService.signAsync(payload, {
+            expiresIn: '20m',
             secret: this.configService.get('JWT_SECRET'),
         });
-    
-        const refresh_token = await this.jwtService.signAsync(payload, {
-            expiresIn: '7d',
-            secret: this.configService.get('JWT_SECRET'), //JWT_REFRESH_SECRET
-        });
-    
+
         return {
             status: "ok",
             message: "Đăng nhập thành công",
-            access_token,
-            refresh_token,
+            data: jwtString,
         };
     }
 }
