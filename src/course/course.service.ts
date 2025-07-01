@@ -21,7 +21,6 @@ export class CourseService {
             }
         })
         return {
-            status: "ok",
             message: "Create course successfully",
             data: course
         };
@@ -30,7 +29,6 @@ export class CourseService {
     async getCourses() {
         const data = await this.prismaService.course.findMany()
         return {
-            status: "ok",
             message: "Query course successfully",
             data: data
         };
@@ -58,7 +56,6 @@ export class CourseService {
             }
         })
         return {
-            status: "ok",
             message: "Update course successfully",
             data: data
         };
@@ -79,7 +76,6 @@ export class CourseService {
             },
         })
         return {
-            status: "ok",
             message: "Delete course successfully",
             data: data
         };

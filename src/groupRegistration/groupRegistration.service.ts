@@ -115,7 +115,6 @@ export class GroupRegistrationService {
         
   
         return {
-            status: "ok",
             message: "Query groupRegistration successfully",
             data: listTerm
         };
@@ -151,7 +150,6 @@ export class GroupRegistrationService {
             const groups = groupRegistrations.map(gr => gr.group);
 
             return {
-                status: "ok",
                 message: "Query groupRegistration successfully",
                 data: groups
             };
@@ -170,7 +168,6 @@ export class GroupRegistrationService {
             });
 
             return {
-                status: "ok",
                 message: "Query groupRegistration successfully",
                 data: groups
             };
@@ -197,7 +194,6 @@ export class GroupRegistrationService {
         console.log(accounts)
   
         return {
-            status: "ok",
             message: "Query groupRegistration successfully",
             data: accounts
         };
@@ -221,7 +217,6 @@ export class GroupRegistrationService {
       
   
         return {
-            status: "ok",
             message: "Query groupRegistration successfully",
             data: sortedGroupRegistrations
         };
@@ -236,13 +231,11 @@ export class GroupRegistrationService {
                 });
             });
             return {
-                status: "ok",
                 message: "Update grade successfully",
                 data: updatePromises
             };
         } catch (error) {
             return {
-                status: "ok",
                 message: "Có lỗi",
             };
         }
@@ -268,7 +261,6 @@ export class GroupRegistrationService {
           
   
         return {
-            status: "ok",
             message: "Query courseRegistration successfully",
             data: courses
         };
@@ -295,7 +287,6 @@ export class GroupRegistrationService {
           
   
         return {
-            status: "ok",
             message: "Query groupRegistration successfully",
             data: groupRegistrations
         };
@@ -351,7 +342,6 @@ export class GroupRegistrationService {
         }));
 
         return {
-            status: "ok",
             message: "Query groupRegistration successfully",
             data: groupsWithRegistrationStatus
         };
@@ -392,7 +382,6 @@ export class GroupRegistrationService {
         }));
 
         return {
-            status: "ok",
             message: "Query groupRegistration successfully",
             data: groupsWithRegistrationStatus
         };
@@ -425,7 +414,6 @@ export class GroupRegistrationService {
         // Kiểm tra nhóm còn slot để đăng ký không
         if (group.availableSlots <= 0) {
             return {
-                status: "ok",
                 message: "Nhóm này đã hết chỗ",
             };
         }
@@ -434,7 +422,6 @@ export class GroupRegistrationService {
         for (const gr of groupRegistrations) {
             if (groupId === gr.groupId) {
                 return {
-                    status: "ok",
                     message: "Bạn đã đăng kí nhóm này",
                 };
             }
@@ -444,7 +431,6 @@ export class GroupRegistrationService {
         for (const gr of groupRegistrations) {
             if (group.courseId == gr.group.courseId) {
                 return {
-                    status: "ok",
                     message: "Một môn học không thể đăng kí 2 nhóm",
                 };
             }
@@ -454,7 +440,6 @@ export class GroupRegistrationService {
         for (const gr of groupRegistrations) {
             if (gr.group.dayOfWeek == group.dayOfWeek && gr.group.period == group.period) {
                 return {
-                    status: "ok",
                     message: "Trùng lịch học",
                 };
             }
@@ -479,7 +464,6 @@ export class GroupRegistrationService {
         });
     
         return {
-            status: "ok",
             message: "Đăng kí nhóm học thành công",
             data: data,
         };
@@ -511,7 +495,6 @@ export class GroupRegistrationService {
         })
 
         return {
-            status: "ok",
             message: "Hủy đăng kí nhóm thành công",
             data: data
         };

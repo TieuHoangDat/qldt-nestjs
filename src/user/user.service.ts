@@ -13,7 +13,6 @@ export class UserService {
         const userData = data.map(({ password, ...user }) => user);
     
         return {
-            status: "ok",
             message: "Query user successfully",
             data: userData
         };
@@ -30,7 +29,6 @@ export class UserService {
             }
         })
         return {
-            status: "ok",
             message: "Update user successfully",
             data: data
         };

@@ -44,7 +44,6 @@ export class AuthService{
                 }
             })
             return {
-                status: "ok",
                 message: "Create user successfully",
                 data: user
             };
@@ -80,7 +79,7 @@ export class AuthService{
         return await this.signJwtToken(user)
     }
 
-    async signJwtToken(user: any): Promise<{status: string, message: string, access_token: string, refresh_token: string}> {
+    async signJwtToken(user: any): Promise<{message: string, access_token: string, refresh_token: string}> {
         const payload = {
             account_id: user.account_id,
             name: user.name,
@@ -105,7 +104,6 @@ export class AuthService{
         });
     
         return {
-            status: "ok",
             message: "Đăng nhập thành công",
             access_token,
             refresh_token,

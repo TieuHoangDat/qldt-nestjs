@@ -13,7 +13,6 @@ export class NotificationService {
             }
         })
         return {
-            status: "ok",
             message: "Create notification successfully",
             data: notification
         };
@@ -22,7 +21,6 @@ export class NotificationService {
     async getNotifications() {
         const data = await this.prismaService.notification.findMany()
         return {
-            status: "ok",
             message: "Query notification successfully",
             data: data
         };
@@ -38,7 +36,6 @@ export class NotificationService {
             }
         })
         return {
-            status: "ok",
             message: "Update notification successfully",
             data: data
         };
@@ -51,7 +48,6 @@ export class NotificationService {
             },
         })
         return {
-            status: "ok",
             message: "Delete notification successfully",
             data: data
         };

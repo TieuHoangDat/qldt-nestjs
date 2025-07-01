@@ -19,7 +19,6 @@ export class GroupService {
             },
         })
         return {
-            status: "ok",
             message: "Query group successfully",
             data: data
         };
@@ -35,7 +34,6 @@ export class GroupService {
             },
         })
         return {
-            status: "ok",
             message: "Query group successfully",
             data: data
         };
@@ -49,7 +47,6 @@ export class GroupService {
             }
         })
         return {
-            status: "ok",
             message: "Create group successfully",
             data: group
         };
@@ -65,7 +62,6 @@ export class GroupService {
             }
         })
         return {
-            status: "ok",
             message: "Update group successfully",
             data: data
         };
@@ -78,7 +74,6 @@ export class GroupService {
             },
         })
         return {
-            status: "ok",
             message: "Delete group successfully",
             data: data
         };
