@@ -30,6 +30,20 @@ model Account {
   GroupRegistration GroupRegistration[]
   CourseRegistration CourseRegistration[]
   Group Group[]
+  refreshTokens     RefreshToken[]
+}
+
+model RefreshToken {
+  id          Int      @id @default(autoincrement())
+  token       String   @unique // Đảm bảo token là duy nhất
+  createdAt   DateTime @default(now())
+  expiresAt   DateTime // Thời gian hết hạn
+  revoked     Boolean  @default(false) // Trạng thái bị thu hồi
+  // Tạo quan hệ với Account
+  account     Account  @relation(fields: [accountId], references: [account_id])
+  accountId   Int
+
+  @@map("RefreshTokens")
 }
 
 model Course {
