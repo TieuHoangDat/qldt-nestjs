@@ -24,7 +24,7 @@ export class GroupService {
         };
     }
 
-    async getGroupsById(groupId: number) {
+    async getGroupById(groupId: number) {
         const data = await this.prismaService.group.findUnique({
             include: {
                 course: true,

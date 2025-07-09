@@ -34,9 +34,6 @@ export class CourseService {
         };
     }
 
-    getCourseById(courseId: number) {
-        
-    }
 
     async updateCourse(courseId: string, courseDto: CourseDto) {
         const course = this.prismaService.course.findUnique({
